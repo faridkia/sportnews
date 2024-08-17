@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/posts.css' %}">
+{% endblock head%}
+{% block content %}
+    <div class="nav">
+        <div class="container">
+            <div class="logo">
+            <h2>SportNews</h2>
+        </div>
+        <div class="search">
+            <input class="input_search" placeholder="جستجو ... " type="search">
+        </div>
+        <div class="items">
+            <button class="button">منو</button>
+        </div>
+        </div>
+    </div>
+    <div class="post_container">
+        {% for post in posts %}
+            <div class="post">
+                <div class="post_author">
+                    <img style="border-radius: 25px" width="25px" height="25px" src="{% static 'imgs/sport.jpg' %}" alt="">
+                    <h3>{{ post.author }}</h3>
+                </div>
+                <img width="560px" height="340px" src="{{ post.image.url }}" alt="">
+                <h1 class="post_title">{{ post.title }}</h1>
+                <p class="post_caption">{{post.caption}} </p>
+                <p class="post_date"> تاریخ : {{ post.created_at }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content%}
+
