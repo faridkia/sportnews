@@ -10,7 +10,7 @@ def SignUp(request):
             User.objects.create_user(username=cd['username'], password=cd['password'])
             return HttpResponse('User Sakhte Shod')
         else:
-            ...
+            return render(request, 'accounts/signup.html', context={'form':form})
     else:
         form = SignUpForm()
         return render(request, 'accounts/signup.html', context={'form':form})

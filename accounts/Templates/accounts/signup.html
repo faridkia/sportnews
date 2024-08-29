@@ -1,16 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock head %}
 {% block title %} <title>SignUp</title> {% endblock title%}
 
 {% block content %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.username }}
-        <br>
-        {{ form.password }}
-        <br>
-        <input type="submit" value="Send">
-    </form>
+    <div class="container">
+        <img src="{% static 'imgs/run.webp' %}" alt="login-img">
+        <div class="left-side">
+            <h2>Sport News</h2>
+            <div class="form">
+                <form action="" method="post">
+                {% csrf_token %}
+                {% if form.username.errors %}
+                    <p>{{ form.username.errors }}</p>
+                {% endif %}
+                {{ form.username }}
+                <br>
+                {% if form.password.errors %}
+                    <p>{{ form.password.errors }}</p>
+                {% endif %}
+                {{ form.password }}
+                <br>
+                <input class="send" type="submit" value="Send">
+        </form>
+        </div>
+
+    </div>
+
 {% endblock content %}
