@@ -1,4 +1,7 @@
 from django.shortcuts import render, HttpResponse
 
-def gholam(request):
-    return render(request, 'core/home.html')
+def home(request):
+    if request.user.is_authenticated:
+        return render(request, 'core/home.html', context={'user':request.user})
+    else:
+        return render(request, 'core/home.html', context={'user':''})

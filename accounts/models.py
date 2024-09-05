@@ -6,3 +6,6 @@ def user_image_upload_path(instance, filename):
 
 class User(AbstractUser):
     image = models.ImageField(upload_to=user_image_upload_path, verbose_name='عکس')
+
+    def __str__(self):
+        return f'{self.username}'

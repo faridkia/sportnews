@@ -21,3 +21,15 @@ class SignUpForm(forms.Form):
             raise forms.ValidationError('Password must at least 8 characters')
 
         return password
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'placeholder':'Username', 'class':'username'}))
+    password = forms.CharField(max_length=30, required=True, widget=forms.PasswordInput(attrs={'placeholder':'password', 'class':'password'}))
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if User.objects.filter(username=username).exists():
+            return username
+        else:
+            raise forms.ValidationError('The Username/password is incorrect.')
+
