@@ -5,3 +5,6 @@ def home(request):
         return render(request, 'core/home.html', context={'user':request.user})
     else:
         return render(request, 'core/home.html', context={'user':''})
+
+def dashboard(request):
+    return HttpResponse(f'Salam {request.user.username}')

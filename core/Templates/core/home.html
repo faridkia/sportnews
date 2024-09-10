@@ -1,6 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+    <title>Home</title>
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/home.css'%}">
+{% endblock %}
+
 {% block content %}
-    <p>Salam Aleik {{ user }} !</p>
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="nav">
+            <div class="logo">
+                <h2>SportNews</h2>
+            </div>
+            <div class="items">
+                <div class="item">
+                    <a href="{% url 'home:home' %}">Home</a>
+                </div>
+                <div class="item">
+                    <a href="#">Contact</a>
+                </div>
+                <div id="btn-login" class="item">
+                    <a href="{% url 'accounts:login' %}">Login/Signup</a>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <h1><span style="color: white">Score the</span> <span style="color: #2e2ef1">News</span></h1>
+            <p>Our sports news website delivers fast and reliable updates, covering all major sports worldwide. Stay informed with real-time scores, highlights, and expert analysis.</p>
+        </div>
+    </div>
 {% endblock content %}

@@ -32,4 +32,3 @@ class LoginForm(forms.Form):
             return username
         else:
             raise forms.ValidationError('The Username/password is incorrect.')
-
