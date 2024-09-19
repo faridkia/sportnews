@@ -1,10 +1,12 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 
 def home(request):
     if request.user.is_authenticated:
-        return render(request, 'core/home.html', context={'user':request.user})
+        return redirect('home:dashboard')
     else:
-        return render(request, 'core/home.html', context={'user':''})
+        return render(request, 'core/home.html')
 
 def dashboard(request):
-    return HttpResponse(f'Salam {request.user.username}')
+    if request.user.is_authenticated:
+        return render(request, 'core/dashboard.html', context={'user':request.user})
+    return redirect('home:home')

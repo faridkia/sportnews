@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Dashboard</title>
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <nav class="nav">
+        <div class="left-side">
+            <h2><span style="color: #1212dc">Sport</span> News</h2>
+            <div class="search-bar">
+                <i id="search-icon" class="fas fa-search"></i>
+                <form action="" method="get">
+                    <input placeholder="Search ..." name="search" maxlength="50" class="search-input">
+                </form>
+            </div>
+        </div>
+        <div class="right-side">
+            <p>Hello {{ user.username }}!</p>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="menu-left-side">
+            <div class="first-item">
+                <div class="mhome">
+                    <i class="fas fa-home"></i>
+                    <p>Home</p>
+                </div>
+                <div class="mhome">
+                    <i class="fas fa-folder"></i>
+                    <p>Category</p>
+                </div>
+            </div>
+            <span class="line"></span>
+            <div class="first-item">
+                <div class="mhome">
+                    <i class="fas fa-user"></i>
+                    <p>About</p>
+                </div>
+                <div class="mhome">
+                    <i class="fas fa-mail-forward"></i>
+                    <p>Contact</p>
+                </div>
+            </div>
+            <span class="line"></span>
+            <div class="first-item">
+                <div class="mhome">
+                    <i class="fas fa-book"></i>
+                    <p>Documentation</p>
+                </div>
+                <div class="mhome">
+                    <i class="fas fa-futbol"></i>
+                    <p>Posts</p>
+                </div>
+                <div class="mhome">
+                    <i class="fas fa-lock"></i>
+                    <p>Privacy</p>
+                </div>
+                <div class="mhome">
+                    <i class="fas fa-bookmark"></i>
+                    <p>Saved</p>
+                </div>
+            </div>
+            <span class="line"></span>
+            <div class="first-item">
+                <div class="mhome">
+                    <i class="fas fa-heart"></i>
+                    <p>Likes</p>
+                </div>
+            </div>
+            <div class="menu-icons">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-telegram"></i>
+                <i class="fab fa-facebook"></i>
+            </div>
+        </div>
+        <div class="main-right-side"></div>
+    </div>
+{% endblock %}
