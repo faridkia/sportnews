@@ -82,6 +82,149 @@
                 <i class="fab fa-facebook"></i>
             </div>
         </div>
-        <div class="main-right-side"></div>
+        <div class="main-right-side">
+            <div class="top">
+                <div class="menu-right-tl-side">
+                    <h3>Trending</h3>
+                    <div class="mtpost">
+                        <img src="{% static 'imgs/sport.jpg' %}" alt="">
+                        <div class="mtpost-detail">
+                            <h2>Visca Barcelona ❤️💙!</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, qui?</p>
+                            <p>Blogger: {{ user.username }}</p>
+                            <div class="mtl-line">
+                                <p>Date</p>
+                                <i class="fas fa-heart"><span> 42</span></i>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="menu-right-tr-side">
+                <h3>Friends</h3>
+                <div class="friends">
+                    <div class="friend">
+                        <img src="{{ user.image.url }}" alt="">
+                    </div>
+                    <div class="friend">
+                        <img src="{{ user.image.url }}" alt="">
+                    </div>
+                    <div class="friend">
+                        <img src="{{ user.image.url }}" alt="">
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="post-container">
+                <div class="post-header">
+                    <h3>Latest Posts</h3>
+                    <div class="filters">
+                        <i class="fas fa-eye"><span> View</span></i>
+                        <i class="fa-solid fa-clock"><span> Time</span></i>
+                    </div>
+                </div>
+                <div class="posts">
+                    <div class="post">
+                        <img src="{% static 'imgs/login.jpg' %}" alt="">
+                        <div class="hashtags">
+                            <a href="#">#Sport</a>
+                            <a href="#">#Soccer</a>
+                        </div>
+                        <h3>Man-utd vs ManCity 3-0</h3>
+                        <div class="pl-line">
+                            <p>John Doe</p>
+                            <i class="fas fa-heart"><span> 42</span></i>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <img src="{% static 'imgs/login.jpg' %}" alt="">
+                        <div class="hashtags">
+                            <a href="#">#Sport</a>
+                            <a href="#">#Soccer</a>
+                        </div>
+                        <h3>Man-utd vs ManCity 3-0</h3>
+                        <div class="pl-line">
+                            <p>John Doe</p>
+                            <i class="fas fa-heart"><span> 42</span></i>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <img src="{% static 'imgs/login.jpg' %}" alt="">
+                        <div class="hashtags">
+                            <a href="#">#Sport</a>
+                            <a href="#">#Soccer</a>
+                        </div>
+                        <h3>Man-utd vs ManCity 3-0</h3>
+                        <div class="pl-line">
+                            <p>John Doe</p>
+                            <i class="fas fa-heart"><span> 42</span></i>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <img src="{% static 'imgs/login.jpg' %}" alt="">
+                        <div class="hashtags">
+                            <a href="#">#Sport</a>
+                            <a href="#">#Soccer</a>
+                        </div>
+                        <h3>Man-utd vs ManCity 3-0</h3>
+                        <div class="pl-line">
+                            <p>John Doe</p>
+                            <i class="fas fa-heart"><span> 42</span></i>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <img src="{% static 'imgs/login.jpg' %}" alt="">
+                        <div class="hashtags">
+                            <a href="#">#Sport</a>
+                            <a href="#">#Soccer</a>
+                        </div>
+                        <h3>Man-utd vs ManCity 3-0</h3>
+                        <div class="pl-line">
+                            <p>John Doe</p>
+                            <i class="fas fa-heart"><span> 42</span></i>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <img src="{% static 'imgs/login.jpg' %}" alt="">
+                        <div class="hashtags">
+                            <a href="#">#Sport</a>
+                            <a href="#">#Soccer</a>
+                        </div>
+                        <h3>Man-utd vs ManCity 3-0</h3>
+                        <div class="pl-line">
+                            <p>John Doe</p>
+                            <i class="fas fa-heart"><span> 42</span></i>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <img src="{% static 'imgs/login.jpg' %}" alt="">
+                        <div class="hashtags">
+                            <a href="#">#Sport</a>
+                            <a href="#">#Soccer</a>
+                        </div>
+                        <h3>Man-utd vs ManCity 3-0</h3>
+                        <div class="pl-line">
+                            <p>John Doe</p>
+                            <i class="fas fa-heart"><span> 42</span></i>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <img src="{% static 'imgs/login.jpg' %}" alt="">
+                        <div class="hashtags">
+                            <a href="#">#Sport</a>
+                            <a href="#">#Soccer</a>
+                        </div>
+                        <h3>Man-utd vs ManCity 3-0</h3>
+                        <div class="pl-line">
+                            <p>John Doe</p>
+                            <i class="fas fa-heart"><span> 42</span></i>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="more-posts">
+                    More posts
+                </a>
+                <br>
+            </div>
+        </div>
     </div>
 {% endblock %}

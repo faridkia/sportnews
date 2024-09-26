@@ -16,7 +16,9 @@
     display: flex;
     width: 100%;
     height: 60px;
-    box-shadow: #eee 1px 1px;
+    border: #eee 1px solid;
+    position: fixed;
+    background-color: white;
 }
 .left-side{
     width: 65%;
@@ -36,7 +38,7 @@
     /*margin-top: 15px;*/
     border-radius: 10px;
     background-color: #f1ecec;
-    width: 45%;
+    width: 450px;
     height: 45px;
 }
 .search-bar p{
@@ -45,6 +47,7 @@
 .search-input{
     font-size: 14px;
     margin-left: 9px;
+    width: 375px;
     background-color: #f1ecec;
     border: none;
     border-bottom: 0px solid #ccc;
@@ -53,23 +56,31 @@
         }
 
 .search-input:focus {
-    border: none; /* Ensure all borders remain removed */
-    border-bottom: 2px solid #1212dc; /* Change only the bottom border color on focus */
+    border: none;
+    border-bottom: 2px solid #1212dc;
 }
 .container{
     width: 100%;
     height: 80vh;
+    display: flex;
 }
 .menu-left-side{
+    margin-top: 6rem;
     width: 17%;
     display: flex;
     flex-direction: column;
     border-right: 1px solid #eee;
     height: 91vh;
-    overflow-y: hidden;
+    position: fixed;
 }
 .main-right-side{
+    margin-left: 18rem;
+    margin-top: 3rem;
     width: 83%;
+    display: flex;
+    height: 91vh;
+    flex-direction: column;
+    background-color: #fbfbfb;
 }
 .first-item{
     margin-top: 1rem;
@@ -109,4 +120,146 @@
     height: 100%;
     margin-bottom: 15px;
     gap: 4px;
+}
+
+.menu-right-tl-side{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+    height: 37vh;
+}
+.top{
+    display: flex;
+}
+.menu-right-tl-side h3{
+    margin-left: 1.75rem;
+    margin-top: 1rem;
+}
+.mtpost{
+    width: 90%;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    display: flex;
+    height: 70%;
+    margin-left: 1.75rem;
+    gap: 10px;
+}
+.menu-right-tr-side{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 30vh;
+    gap: 1.5rem;
+}
+.mtpost-detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 10px;
+    gap: 7px;
+}
+.mtpost img{
+    padding: 10px;
+    border-radius: 14px;
+}
+.mtl-line{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 10px;
+}
+.menu-right-tr-side h3{
+    margin-top: 1rem;
+}
+.friends{
+    display: flex;
+    gap: 10px;
+}
+.friend{
+    width: 65px;
+    height: 65px;
+    border-radius: 50px;
+}
+.friend img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    object-fit: cover;
+    border: 3px solid #eee;
+}
+.post-container{
+    width: 100%;
+    height: 54vh;
+    display: flex;
+    flex-direction: column;
+}
+.post-header{
+    display: flex;
+    gap: 48rem;
+    margin-top: 2rem;
+    width: 90%;
+}
+.post-header h3{
+    margin-left: 1.75rem;
+}
+.filters{
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+.post{
+    display: flex;
+    flex-direction: column;
+    width: 22%;
+    height: 300px;
+    border: 1px solid #eee;
+    border-radius: 7px;
+}
+.post img{
+    width: 100%;
+    padding: 10px;
+    border-radius: 17px;
+    height: 180px;
+}
+.posts{
+    display: flex;
+    gap: 1rem;
+    margin-left: 1.25rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+
+}
+.post h3{
+    margin-top: 2px;
+    margin-left: 1rem;
+}
+.hashtags{
+    margin-left: 1rem;
+}
+.pl-line{
+    margin-top: 32px;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.pl-line i{
+    margin-right: 10px;
+}
+.post a{
+    text-decoration: none;
+}
+.more-posts{
+    text-decoration: none;
+    color: #fff;
+    border-radius: 10px;
+    padding: 8px 12px;
+    background-color: #1212dc;
+    width: 120px;
+    height: 50px;
+    margin-left: 32rem;
+    margin-top: 2.5rem;
+    text-align: center;
 }
