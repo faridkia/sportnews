@@ -1,12 +1,12 @@
 from django.db import models
-
+from accounts.models import User
 
 class Post(models.Model):
     title = models.CharField(max_length=60, verbose_name='عنوان')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='زمان انتشار')
-    author = models.CharField(max_length=30, verbose_name='نویسنده')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='نویسنده', related_name='posts')
     image = models.ImageField(upload_to='post_images/', verbose_name='عکس')
-    caption = models.CharField(max_length=300, verbose_name='توضیحات', null=True, blank=True)
+    caption = models.TextField(max_length=3000, verbose_name='توضیحات', null=True, blank=True)
 
 
     def __str__(self):

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    <title>Sportnews</title>
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/post_detail.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@latest/dist/font-face.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block content %}
+    <nav class="nav">
+        <div class="nav-left-side">
+            <h2><span style="color: #1212dc">Sport</span> News</h2>
+            <div class="search-bar">
+                <i id="search-icon" class="fas fa-search"></i>
+                <form action="" method="get">
+                    <input placeholder="Search ..." name="search" maxlength="50" class="search-input">
+                </form>
+            </div>
+        </div>
+        <div class="nav-right-side">
+            <p>Hello {{ user.username }}!</p>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="left-side"></div>
+        <div class="right-side">
+            <h1 class="rh1">{{ post.title }}</h1>
+            <p class="rbh1">{{ post.created_at }}</p>
+            <div class="items">
+                <div class="author">
+                    <p>{{ post.author }}</p>
+                    <div class="circle">
+                        {% if post.author.image %}
+                            <img src="{{ post.author.image.url }}" alt="">
+                        {% else %}
+                            <img src="{% static 'imgs/user.png' %}" alt="">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="post-info">
+                    <div class="comments">
+                        <i class="fas fa-comment"></i>
+                        <p>123</p>
+                    </div>
+                    <div class="comments">
+                        <i class="fas fa-heart"></i>
+                        <p>1234</p>
+                    </div>
+                    <div class="comments">
+                        <i class="fas fa-save"></i>
+                        <p>35</p>
+                    </div>
+                </div>
+            </div>
+            <img class="post-img" src="{{ post.image.url }}" alt="">
+            <p dir="rtl" class="post-description">{{ post.caption }}</p>
+            <div class="comment-section">
+                <h2 dir="rtl">کامنت ها</h2>
+
+                <form action="#" method="post" id="commentForm">
+                    <div class="form-group">
+                        <textarea dir="rtl" style="margin-top: 1rem" id="comment" name="comment" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Comment</button>
+                </form>
+
+                <div class="comment-output" id="commentOutput" style="display:none;">
+                    <h3>Thank you for your comment!</h3>
+                    <p><strong>Name:</strong> <span id="outputName"></span></p>
+                    <p><strong>Email:</strong> <span id="outputEmail"></span></p>
+                    <p><strong>Comment:</strong> <span id="outputComment"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('commentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const comment = document.getElementById('comment').value;
+
+            // Display the comment output
+            document.getElementById('outputName').textContent = name;
+            document.getElementById('outputEmail').textContent = email;
+            document.getElementById('outputComment').textContent = comment;
+            document.getElementById('commentOutput').style.display = 'block';
+
+            // Clear the form
+            document.getElementById('commentForm').reset();
+        });
+    </script>
+{% endblock %}
