@@ -44,27 +44,49 @@
                 </div>
                 <div class="post-info">
                     <div class="comments">
-                        <i class="fas fa-comment"></i>
-                        <p>123</p>
+                        {% if is_like %}
+                            <a href="{% url 'home:like' post.id %}"><img style="background-color: white" width="40px" height="40px" src="{% static 'imgs/like.png' %}" alt=""></a>
+                        {% else %}
+                            <a href="{% url 'home:like' post.id %}"><img style="background-color: white" width="40px" height="40px" src="{% static 'imgs/unlike.png' %}" alt=""></a>
+                        {% endif %}
                     </div>
                     <div class="comments">
-                        <i class="fas fa-heart"></i>
-                        <p>1234</p>
-                    </div>
-                    <div class="comments">
-                        <i class="fas fa-save"></i>
-                        <p>35</p>
+                        {% if is_saved %}
+                            <a href="{% url 'home:saved' post.id %}"><img style="background-color: white" width="40px" height="40px" src="{% static 'imgs/saved.png' %}" alt=""></a>
+                        {% else %}
+                            <a href="{% url 'home:saved' post.id %}"><img style="background-color: white" width="40px" height="40px" src="{% static 'imgs/unsave.png' %}" alt=""></a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
             <img class="post-img" src="{{ post.image.url }}" alt="">
             <p dir="rtl" class="post-description">{{ post.caption }}</p>
+            <div style="display: flex;flex-direction: row-reverse;width: 100%">
+                <div style="width: 100%;margin-top: 1.5rem" class="post-info">
+                    <div class="comments">
+                        <i class="fas fa-comment"></i>
+                        <p>{{ comment_count }}</p>
+                    </div>
+                    <div class="comments">
+                        <i class="fas fa-heart"></i>
+                        <p>{{ like_count }}</p>
+                    </div>
+                    <div class="comments">
+                        <i class="fas fa-save"></i>
+                        <p>{{ saved_count }}</p>
+                    </div>
+                </div>
+            </div>
             <div class="comment-section">
                 <h2 dir="rtl">کامنت ها</h2>
 
-                <form action="#" method="post" id="commentForm">
+                <form action="{% url 'post:post_detail' post.id %}" method="post" id="commentForm">
+                    {% csrf_token %}
+                    {% if form.text.errors %}
+                        <p>{{ form.text.errors }}</p>
+                    {% endif %} 
                     <div class="form-group">
-                        <textarea dir="rtl" style="margin-top: 1rem" id="comment" name="comment" required></textarea>
+                        <textarea dir="rtl" style="margin-top: 1rem" id="comment" name="text" required></textarea>
                     </div>
 
                     <button type="submit" class="submit-btn">Submit Comment</button>
@@ -77,26 +99,25 @@
                     <p><strong>Comment:</strong> <span id="outputComment"></span></p>
                 </div>
             </div>
+            <div class="comment-list">
+                {% for comment in comments %}
+                    <div class="comment-row">
+                    <div class="circle">
+                        {% if comment.user.image %}
+                            <img src="{{ comment.user.image.url }}" alt="">
+                        {% else %}
+                            <img src="{% static 'imgs/user.png' %}" alt="">
+                        {% endif %}
+                    </div>
+                    <h2>{{ comment.user.username }}</h2>
+                    <br>
+                    <p>{{ comment.text }}</p>
+                    <p>{{ comment.date }}</p>
+                    </div>
+                {% endfor %}
+
+            </div>
         </div>
     </div>
 
-    <script>
-        document.getElementById('commentForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Get form data
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const comment = document.getElementById('comment').value;
-
-            // Display the comment output
-            document.getElementById('outputName').textContent = name;
-            document.getElementById('outputEmail').textContent = email;
-            document.getElementById('outputComment').textContent = comment;
-            document.getElementById('commentOutput').style.display = 'block';
-
-            // Clear the form
-            document.getElementById('commentForm').reset();
-        });
-    </script>
 {% endblock %}
