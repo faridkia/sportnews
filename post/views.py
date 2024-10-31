@@ -8,6 +8,7 @@ def post_list(request):
     return render(request, 'post/posts.html', context={'posts':posts})
 
 def post_detail(request, id):
+    spost = Post.objects.all()[1:5]
     post = get_object_or_404(Post, id=id)
     comments = post.comments.filter(is_ok=True).all()
     if request.user.is_authenticated:
@@ -33,12 +34,12 @@ def post_detail(request, id):
             return render(request, 'post/post_detail.html',
                           context={'post': post, 'is_like': is_like, 'is_saved': is_saved,
                                    'like_count': like_count, 'saved_count': saved_count,
-                                   'form': form, 'comments':comments, 'comment_count':comments.count()})
+                                   'form': form, 'comments':comments, 'comment_count':comments.count(), 'spost':spost})
         else:
             redirect('accounts:login')
     else:
         form = CommentForm()
         return render(request, 'post/post_detail.html', context={'post':post, 'is_like':is_like, 'is_saved':is_saved,
                                                              'like_count':like_count, 'saved_count':saved_count,
-                                                                 'form':form, 'comments':comments, 'comment_count':comments.count()})
+                                                                 'form':form, 'comments':comments, 'comment_count':comments.count(),'spost':spost})
 

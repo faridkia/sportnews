@@ -27,7 +27,28 @@
         </div>
     </nav>
     <div class="container">
-        <div class="left-side"></div>
+        <div class="left-side">
+            <div class="similar-posts">
+                <h2 style="margin-left: 4.5rem;margin-bottom: 1.5rem">پست های مشابه</h2>
+                {% for post in spost %}
+                    <div class="spost">
+                        <img src="{{ post.image.url }}" alt="">
+                        <div class="hashtags">
+                            <a href="#">#Sport</a>
+                            <a href="#">#Soccer</a>
+                        </div>
+                        <h3><a href="{% url "post:post_detail" post.id %}">{{ post.title }}</a></h3>
+                        <p class="spost-desc">{{ post.caption | truncatewords:10 }}</p>
+                        <div class="pl-line">
+                            <p>John Doe</p>
+                            <i class="fas fa-heart"><span> 42</span></i>
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
         <div class="right-side">
             <h1 class="rh1">{{ post.title }}</h1>
             <p class="rbh1">{{ post.created_at }}</p>
@@ -102,17 +123,20 @@
             <div class="comment-list">
                 {% for comment in comments %}
                     <div class="comment-row">
-                    <div class="circle">
-                        {% if comment.user.image %}
-                            <img src="{{ comment.user.image.url }}" alt="">
-                        {% else %}
-                            <img src="{% static 'imgs/user.png' %}" alt="">
-                        {% endif %}
+                        <div class="comment-user">
+                             <h2>{{ comment.user.username }}</h2>
+                            <div class="circle">
+                                {% if comment.user.image %}
+                                    <img src="{{ comment.user.image.url }}" alt="">
+                                {% else %}
+                                    <img src="{% static 'imgs/user.png' %}" alt="">
+                                {% endif %}
+                            </div>
+                        </div>
+                    <div class="comment-info">
+                        <p>{{ comment.text }}</p>
+                        <p class="comment-date">{{ comment.date }}</p>
                     </div>
-                    <h2>{{ comment.user.username }}</h2>
-                    <br>
-                    <p>{{ comment.text }}</p>
-                    <p>{{ comment.date }}</p>
                     </div>
                 {% endfor %}
 
