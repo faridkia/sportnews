@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/post_create.css' %}">
+{% endblock %}
+{% block content %}
+  <div class="container">
+    <h1>Edit a Post</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <!-- Title Field -->
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" class="form-control" placeholder="Enter the title" required value="{{ form.title.value|default:'' }}">
+        {% if form.title.errors %}
+          <div class="error-message">
+            {% for error in form.title.errors %}
+              <p>{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Image Field -->
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input type="file" id="image" name="image" class="form-control" accept="image/*" required>
+        {% if form.image.errors %}
+          <div class="error-message">
+            {% for error in form.image.errors %}
+              <p>{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Caption Field -->
+      <div class="form-group">
+        <label for="caption">Caption</label>
+        <textarea id="caption" name="caption" class="form-control" rows="4" placeholder="Write a caption" required>{{ form.caption.value|default:'' }}</textarea>
+        {% if form.caption.errors %}
+          <div class="error-message">
+            {% for error in form.caption.errors %}
+              <p>{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+{% endblock %}

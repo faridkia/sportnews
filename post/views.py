@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from .models import Post
 from core.models import *
 from core.forms import CommentForm
+from .forms import PostCreateForm
+from django.contrib import messages
+
 def post_list(request):
     posts = Post.objects.all()
     return render(request, 'post/posts.html', context={'posts':posts})
@@ -43,3 +46,48 @@ def post_detail(request, id):
                                                              'like_count':like_count, 'saved_count':saved_count,
                                                                  'form':form, 'comments':comments, 'comment_count':comments.count(),'spost':spost})
 
+
+
+
+def post_create(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = PostCreateForm(request.POST, request.FILES)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = request.user
+                post.save()
+                messages.success(request, 'پست با موفقیت ساخته شد')
+                return redirect('home:dashboard')
+        else:
+            form = PostCreateForm()
+        return render(request, 'post/post_create.html', context={'form': form})
+    return redirect('accounts:login')
+
+def post_delete(request, id):
+    post = Post.objects.get(id=id)
+    if post.author == request.user:
+        post.delete()
+        messages.success(request, 'پست با موفقیت پاک شد')
+        return redirect('home:dashboard')
+    else:
+        messages.error(request, 'شما اجازه پاک کردن پست دیگران را ندارید.')
+        return redirect('home:dashboard')
+
+def post_edit(request, id):
+    if request.user.is_authenticated:
+        post = Post.objects.get(id=id)
+        if post.author == request.user:
+            if request.method == 'POST':
+                form = PostCreateForm(request.POST, request.FILES, instance=post)
+                if form.is_valid():
+                    form.save()
+                    messages.success(request, 'پست با موفقیت ادیت شد')
+                    return redirect('home:dashboard')
+            else:
+                form = PostCreateForm(instance=post)
+            return render(request, 'post/post_edit.html', context={'form': form})
+        else:
+            messages.error(request, 'شما اجازه ادیت کردن پست دیگران را ندارید.')
+            return redirect('home:dashboard')
+    return redirect('accounts:login')

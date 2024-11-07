@@ -9,7 +9,8 @@ def home(request):
 
 def dashboard(request):
     if request.user.is_authenticated:
-        return render(request, 'core/dashboard.html', context={'user':request.user})
+        posts = Post.objects.all()[:8]
+        return render(request, 'core/dashboard.html', context={'user':request.user, 'posts':posts})
     return redirect('home:home')
 
 def like_post(request, id):

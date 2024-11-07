@@ -10,7 +10,10 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Poppins';
+    font-family: 'Vazir', 'Poppins-Light';
+}
+a:visited{
+    color: #0000FF;
 }
 .nav{
     display: flex;
@@ -262,4 +265,19 @@
     margin-left: 32rem;
     margin-top: 2.5rem;
     text-align: center;
+}
+
+
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
 }

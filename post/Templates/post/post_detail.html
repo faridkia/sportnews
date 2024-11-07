@@ -40,7 +40,7 @@
                         <h3><a href="{% url "post:post_detail" post.id %}">{{ post.title }}</a></h3>
                         <p class="spost-desc">{{ post.caption | truncatewords:10 }}</p>
                         <div class="pl-line">
-                            <p>John Doe</p>
+                            <p>{{ post.author }}</p>
                             <i class="fas fa-heart"><span> 42</span></i>
                         </div>
                     </div>

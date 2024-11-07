@@ -8,9 +8,20 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@latest/dist/font-face.css" rel="stylesheet" type="text/css" />
+
 {% endblock %}
 
 {% block content %}
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
     <nav class="nav">
         <div class="left-side">
             <h2><span style="color: #1212dc">Sport</span> News</h2>
@@ -123,104 +134,22 @@
                     </div>
                 </div>
                 <div class="posts">
-                    <div class="post">
-                        <img src="{% static 'imgs/login.jpg' %}" alt="">
+                    {% for post in posts %}
+                        <div class="post">
+                        <img src="{{ post.image.url }}" alt="">
                         <div class="hashtags">
                             <a href="#">#Sport</a>
                             <a href="#">#Soccer</a>
                         </div>
-                        <h3>Man-utd vs ManCity 3-0</h3>
+                        <h3><a href="{% url 'post:post_detail' post.id %}">{{ post.title }}</a></h3>
                         <div class="pl-line">
-                            <p>John Doe</p>
-                            <i class="fas fa-heart"><span> 42</span></i>
+                            <p>{{ post.author }}</p>
+                            <i class="fas fa-heart"><span> {{ post.likes.count }} </span></i>
                         </div>
                     </div>
-                    <div class="post">
-                        <img src="{% static 'imgs/login.jpg' %}" alt="">
-                        <div class="hashtags">
-                            <a href="#">#Sport</a>
-                            <a href="#">#Soccer</a>
-                        </div>
-                        <h3>Man-utd vs ManCity 3-0</h3>
-                        <div class="pl-line">
-                            <p>John Doe</p>
-                            <i class="fas fa-heart"><span> 42</span></i>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <img src="{% static 'imgs/login.jpg' %}" alt="">
-                        <div class="hashtags">
-                            <a href="#">#Sport</a>
-                            <a href="#">#Soccer</a>
-                        </div>
-                        <h3>Man-utd vs ManCity 3-0</h3>
-                        <div class="pl-line">
-                            <p>John Doe</p>
-                            <i class="fas fa-heart"><span> 42</span></i>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <img src="{% static 'imgs/login.jpg' %}" alt="">
-                        <div class="hashtags">
-                            <a href="#">#Sport</a>
-                            <a href="#">#Soccer</a>
-                        </div>
-                        <h3>Man-utd vs ManCity 3-0</h3>
-                        <div class="pl-line">
-                            <p>John Doe</p>
-                            <i class="fas fa-heart"><span> 42</span></i>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <img src="{% static 'imgs/login.jpg' %}" alt="">
-                        <div class="hashtags">
-                            <a href="#">#Sport</a>
-                            <a href="#">#Soccer</a>
-                        </div>
-                        <h3>Man-utd vs ManCity 3-0</h3>
-                        <div class="pl-line">
-                            <p>John Doe</p>
-                            <i class="fas fa-heart"><span> 42</span></i>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <img src="{% static 'imgs/login.jpg' %}" alt="">
-                        <div class="hashtags">
-                            <a href="#">#Sport</a>
-                            <a href="#">#Soccer</a>
-                        </div>
-                        <h3>Man-utd vs ManCity 3-0</h3>
-                        <div class="pl-line">
-                            <p>John Doe</p>
-                            <i class="fas fa-heart"><span> 42</span></i>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <img src="{% static 'imgs/login.jpg' %}" alt="">
-                        <div class="hashtags">
-                            <a href="#">#Sport</a>
-                            <a href="#">#Soccer</a>
-                        </div>
-                        <h3>Man-utd vs ManCity 3-0</h3>
-                        <div class="pl-line">
-                            <p>John Doe</p>
-                            <i class="fas fa-heart"><span> 42</span></i>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <img src="{% static 'imgs/login.jpg' %}" alt="">
-                        <div class="hashtags">
-                            <a href="#">#Sport</a>
-                            <a href="#">#Soccer</a>
-                        </div>
-                        <h3>Man-utd vs ManCity 3-0</h3>
-                        <div class="pl-line">
-                            <p>John Doe</p>
-                            <i class="fas fa-heart"><span> 42</span></i>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
-                <a href="#" class="more-posts">
+                <a style="color: #fff" href="#" class="more-posts">
                     More posts
                 </a>
                 <br>
